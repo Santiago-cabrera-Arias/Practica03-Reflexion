@@ -5,6 +5,7 @@
  */
 package ups.edu.ec.controlador;
 
+import java.util.List;
 import ups.edu.ec.modelo.Persona;
 
 /**
@@ -28,4 +29,29 @@ public class ControladorPersona extends ControladorAbstracto<Persona> {
 
     }
 
+    @Override
+    public int generarId() {
+
+        List<Persona> lista = findAll();
+        System.out.println(lista);
+        int cont = 0;
+        if (lista.size() > 0) {
+
+            for (Persona persona : lista) {
+
+                int cent = persona.getId();
+
+                if (cent > cont) {
+
+                    cont = cent;
+                }
+            }   
+            return cont + 1;
+
+        } else {
+
+            return 1;
+
+        }
+    }
 }

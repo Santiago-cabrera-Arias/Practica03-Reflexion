@@ -14,48 +14,49 @@ import ups.edu.ec.modelo.datosDeUsuario;
  * @author santi
  */
 public class ControladorInicioSesion {
-    
+
     private static ControladorInicioSesion instancia = new ControladorInicioSesion();
-    
+
     private List lista = new ArrayList();
-    
-    private ControladorInicioSesion(){
-        
+
+    private ControladorInicioSesion() {
+
     }
-    
-    public static ControladorInicioSesion getIntancia(){
-        
+
+    public static ControladorInicioSesion getIntancia() {
+
         return instancia;
-        
+
     }
-    
-    public boolean registrar(datosDeUsuario objeto){
-        
-        if (objeto != null) 
+
+    public boolean registrar(datosDeUsuario objeto) {
+
+        if (objeto != null) {
             return lista.add(objeto);
-            
-            return false;
-        
-    }
-    
-    public datosDeUsuario validacion(datosDeUsuario objeto){
-        
-        if (lista.size() > 0 ) {
-            
-            for (Object object : lista) {
-                
-                if (object.equals(objeto)) {
-                    
-                    return objeto;
-                    
-                }
-                
-            }
-            
         }
-        
-        return null;
-        
+
+        return false;
+
     }
-    
+
+    public datosDeUsuario validacion(datosDeUsuario objeto1) {
+
+        if (lista.size() > 0) {
+
+            for (Object object : lista) {
+
+                if (object.equals(objeto1)) {
+
+                    return objeto1;
+
+                }
+
+            }
+
+        }
+
+        return null;
+
+    }
+
 }

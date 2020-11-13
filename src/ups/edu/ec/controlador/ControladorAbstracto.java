@@ -5,10 +5,10 @@
  */
 package ups.edu.ec.controlador;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
-import java.util.function.Predicate;
 
 /**
  *
@@ -36,13 +36,18 @@ public abstract class ControladorAbstracto<T> {
 
     }
 
-    public T read(T comp) {
+    public T read(T objeto) {
 
-        if (validar(comp)) {
+        try {
 
-            return lista.stream().filter(objeto -> objeto.equals(comp)).findFirst().get();
+            return lista.stream().filter(t -> t.equals(objeto)).findFirst().get();
 
+        } catch (NullPointerException ex) {
+
+            ex.printStackTrace();
+            System.out.println("Error de lectura y escritura");
         }
+
         return null;
 
     }
@@ -62,18 +67,43 @@ public abstract class ControladorAbstracto<T> {
         if (lista.contains(objeto)) {
             lista.remove(objeto);
             return true;
+
         }
         return false;
     }
 
-    public abstract boolean validar(T objeto);
+    public abstract int generarId();
 
-    public List<T> getLista() {
-        return lista;
+    public static void imprimirCualquierLista(List listar) {
+
+        for (Object obj : listar) {
+
+            Method[] metodos = obj.getClass().getMethods();
+            for (Method metodo : metodos) {
+
+                if (metodo.getName().equals("getId")) {
+
+                    try {
+                        int cadena = (Integer) metodo.invoke(obj, null);
+                        System.out.println(cadena);
+                    } catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException ex) {
+                        java.util.logging.Logger.getLogger(ControladorAbstracto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+                    }
+
+                }
+
+            }
+
+        }
+
     }
 
-    public void setLista(List<T> lista) {
-        this.lista = lista;
+    public abstract boolean validar(T objeto);
+
+    public List<T> findAll() {
+
+        return lista;
+
     }
 
 }
