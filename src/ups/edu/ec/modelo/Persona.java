@@ -12,17 +12,35 @@ import java.util.Objects;
  * @author santi
  */
 public class Persona {
-    
+
+    private int id;
     private String cedula;
     private String nombre;
     private String apellido;
     private String direccion;
 
-    public Persona(String cedula, String nombre, String apellido, String direccion) {
+    public Persona(int id, String cedula, String nombre, String apellido, String direccion) {
+
+        this.id = id;
         this.cedula = cedula;
         this.nombre = nombre;
         this.apellido = apellido;
         this.direccion = direccion;
+
+    }
+
+    public Persona(String cedula) {
+
+        this.cedula = cedula;
+
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getCedula() {
@@ -84,7 +102,7 @@ public class Persona {
 
     @Override
     public String toString() {
-        return "Persona{" + "cedula=" + cedula + ", nombre=" + nombre + ", apellido=" + apellido + ", direccion=" + direccion + '}';
+        return "Persona{" + "id=" + id + ", cedula=" + cedula + ",nombre=" + nombre + ", apellido=" + apellido + ", direccion=" + direccion  + '}';
     }
-    
+
 }

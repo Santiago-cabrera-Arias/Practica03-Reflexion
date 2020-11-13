@@ -14,13 +14,21 @@ public class Telefono {
     private int id;
     private String numero;
     private String operadora;
-    private EnumTipo tipo;
+    private String tipo;
 
-    public Telefono(int id, String numero, String operadora, EnumTipo tipo) {
+    public Telefono(int id, String numero, String operadora, String tipo) {
+
         this.id = id;
         this.numero = numero;
         this.operadora = operadora;
         this.tipo = tipo;
+        
+    }
+
+    public Telefono(int id) {
+    
+        this.id = id;
+    
     }
 
     public int getId() {
@@ -47,11 +55,11 @@ public class Telefono {
         this.operadora = operadora;
     }
 
-    public EnumTipo getTipo() {
+    public String getTipo() {
         return tipo;
     }
 
-    public void setTipo(EnumTipo tipo) {
+    public void setTipo(String tipo) {
         this.tipo = tipo;
     }
 
@@ -82,7 +90,7 @@ public class Telefono {
 
     @Override
     public String toString() {
-        return "Telefono{" + "id=" + id + ", numero=" + numero + ", operadora=" + operadora + ", tipo=" + tipo + '}';
+        return "Telefono{" + "id=" + id + ", numero=" + numero + ", operadora=" + operadora + ", tipo=" + tipo+'}';
     }
 
 }
